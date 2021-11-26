@@ -4,9 +4,10 @@ services:
    postgres:
     image: postgres:13
     environment:
-      - POSTGRES_DB=dbstore
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=Marta22916248
+      - POSTGRES_HOST=ec2-52-71-217-158.compute-1.amazonaws.com
+      - POSTGRES_DB=d9dr4eseqigg6i
+      - POSTGRES_USER=pdusuuzzxisomqt
+      - POSTGRES_PASSWORD=933dcb3d8e1be8ac7655493d91c570e15bc3321daf292795263c2c0edb241b19
     ports:
       - 5432:5432
     volumes:
@@ -37,3 +38,5 @@ mhpmyadmin:
     - PMA_HOST=mysql
     ports:
       - 8080:80:
+networks:
+      - postgres

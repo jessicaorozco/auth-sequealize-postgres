@@ -14,7 +14,7 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 
 app.engine('html', es6Renderer);
-app.use(express.static(path.join(__dirname + '../public')));
+app.use(express.static(path.join(__dirname + '/views')));
 app.set('views', 'views');
 app.set('view engine', 'html');
 
@@ -42,12 +42,9 @@ app.listen(port, () => {
 });
 
 app.get('/', (req, res) => {
-  let message= `APP AUTH POSGRES SEQUELIZE NODEJS`
   res.render('index.html', {
     root: './public'
   });
-
-// res.status(200).json(home);
 });
 
 // console.log(process.env)
