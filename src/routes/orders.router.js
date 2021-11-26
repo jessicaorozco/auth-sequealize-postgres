@@ -1,5 +1,4 @@
 const express = require('express');
-
 const OrderService = require('../sequelize/order.service');
 const validatorHandler = require('../middlewares/validator.handler');
 const {

@@ -1,5 +1,5 @@
 const express = require('express');
-
+const passport = require('passport');
 const CustomerService = require('../sequelize/customer.service');
 const validationHandler = require('../middlewares/validator.handler');
 const {
@@ -32,7 +32,6 @@ validationHandler(createCustomerSchema, 'body'),
 );
 
 router.patch('/:id',
-  validationHandler(getCustomerSchema, 'params'),
   validationHandler(updateCustomerSchema, 'body'),
   async (req, res, next) => {
     try {
@@ -46,6 +45,7 @@ router.patch('/:id',
 );
 
 router.delete('/:id',
+passport.authenticate('jwt', {session: false}),
   validationHandler(getCustomerSchema, 'params'),
   async (req, res, next) => {
     try {

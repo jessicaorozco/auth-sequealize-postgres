@@ -13,8 +13,10 @@ const updateLoginSchema = Joi.object({
   password: password
 });
 
+
 const updateRecoverySchema = Joi.object({
-  email:email
-})
+  email:email.required(),
+});
+
 
 module.exports = { createLoginSchema, updateLoginSchema, updateRecoverySchema}

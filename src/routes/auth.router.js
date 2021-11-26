@@ -33,6 +33,7 @@ validationHandler(createLoginSchema, 'body'),
 );
 
 router.post('/recovery',
+passport.authenticate('jwt', {session: false}),
 validationHandler(updateRecoverySchema, 'body'),
   async (req, res, next) => {
     try {

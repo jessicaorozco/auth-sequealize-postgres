@@ -10,7 +10,7 @@ const router = express.Router();
 const service = new CategoryService();
 
 router.get('/',
-  // passport.authenticate('jwt', {session: false}),
+  passport.authenticate('jwt', {session: false}),
   checkRoles('admin', 'seller', 'customer'),
   async (req, res, next) => {
   try {
@@ -37,7 +37,7 @@ router.get('/:id',
 );
 
 router.post('/',
-  // passport.authenticate('jwt', {session: false}),
+  passport.authenticate('jwt', {session: false}),
   checkRoles('admin'),
   validatorHandler(createCategorySchema, 'body'),
   async (req, res, next) => {

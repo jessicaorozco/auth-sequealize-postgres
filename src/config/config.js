@@ -10,7 +10,7 @@ const config =  {
   dbhost: process.env.HOST,
   dbname: process.env.DATABASE,
   dbport: process.env.DATABASE_PORT,
-  dburl: process.env.DATABASE_URL || 'postgres://postgres:Marta22916248@localhost:5432/dbstore',
+  dburl: process.env.DATABASE_URL,
   apikey: process.env.TOKEN_SECRET || 'apikey',
   mailmail: process.env.GMAIL_ADDRESS,
   passwordmail: process.env.PASSWORD_EMAIL

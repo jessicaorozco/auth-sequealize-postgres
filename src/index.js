@@ -1,6 +1,9 @@
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 const routerApi = require('./routes');
+const es6Renderer = require('express-es6-template-engine');
+
 require('./utils/auth');
 
 const { logErrors, errorHandler, boomErrorHandler, ormErrorHandler } = require('./middlewares/error.handler');
@@ -9,6 +12,13 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
+
+app.engine('html', es6Renderer);
+app.use(express.static(path.join(__dirname + '../public')));
+app.set('views', 'views');
+app.set('view engine', 'html');
+
+routerApi(app);
 
 const whitelist = ['http://localhost:8080', 'https://myapp.co'];
 const options = {
@@ -21,27 +31,23 @@ const options = {
   }
 }
 app.use(cors(options));
-app.use('development', () => {
-  //...
-})
-app.use('production', () => {
-  //...
-})
-
-app.get('/', (req, res) => {
-  res.status(200).json("APP AUTH POSGRES SEQUELIZE NODEJS");
-});
-
-routerApi(app);
-
 app.use(logErrors);
 app.use(ormErrorHandler);
 app.use(boomErrorHandler);
 app.use(errorHandler);
-app.use(express.static(__dirname + '/'));
+
 
 app.listen(port, () => {
   console.log(`Server in Port ${port}`);
+});
+
+app.get('/', (req, res) => {
+  let message= `APP AUTH POSGRES SEQUELIZE NODEJS`
+  res.render('index.html', {
+    root: './public'
+  });
+
+// res.status(200).json(home);
 });
 
 // console.log(process.env)

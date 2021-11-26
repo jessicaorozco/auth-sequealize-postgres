@@ -1,5 +1,5 @@
 const express = require('express');
-const { v4: uuidv4 } = require('uuid');
+const passport = require('passport');
 const UserService = require('./../sequelize/user.service');
 const service = new UserService();
 
@@ -60,6 +60,7 @@ router.patch('/:id',
 );
 
 router.delete('/:id',
+passport.authenticate('jwt', {session: false}),
   validatorHandler(getUserSchema, 'params'),
   async (req, res, next) => {
     try {
@@ -73,6 +74,7 @@ router.delete('/:id',
 );
 
 router.post('/change-password',
+passport.authenticate('jwt', {session: false}),
 validatorHandler(updateResetPassword, 'body'),
   async (req, res, next) => {
     try {

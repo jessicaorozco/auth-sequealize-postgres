@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const passport = require('passport');
 const ProductsService = require('./../sequelize/product.service');
 const validatorHandler = require('./../middlewares/validator.handler');
 const { createProductSchema, updateProductSchema, getProductSchema } = require('./../schemas/product.schema');
@@ -10,7 +11,7 @@ const service = new ProductsService();
 router.get('/', async (req, res, next) => {
   try {
     const products = await service.find();
-    res.sendFile(path.join(__dirname+'/frontend.html'));
+    res.render('frontend.html');
     // res.json(products);
   } catch (error) {
     next(error);
@@ -35,6 +36,7 @@ router.get('/:id',
 );
 
 router.post('/',
+passport.authenticate('jwt', {session: false}),
   validatorHandler(createProductSchema, 'body'),
   async (req, res, next) => {
     try {
@@ -48,6 +50,7 @@ router.post('/',
 );
 
 router.patch('/:id',
+passport.authenticate('jwt', {session: false}),
   validatorHandler(updateProductSchema, 'body'),
   async (req, res, next) => {
     try {
@@ -62,6 +65,7 @@ router.patch('/:id',
 );
 
 router.delete('/:id',
+passport.authenticate('jwt', {session: false}),
   validatorHandler(getProductSchema, 'params'),
   async (req, res, next) => {
     try {
