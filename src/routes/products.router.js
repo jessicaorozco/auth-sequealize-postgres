@@ -1,5 +1,5 @@
 const express = require('express');
-
+const path = require('path');
 const ProductsService = require('./../sequelize/product.service');
 const validatorHandler = require('./../middlewares/validator.handler');
 const { createProductSchema, updateProductSchema, getProductSchema } = require('./../schemas/product.schema');
@@ -10,11 +10,16 @@ const service = new ProductsService();
 router.get('/', async (req, res, next) => {
   try {
     const products = await service.find();
-    res.json(products);
+    res.sendFile(path.join(__dirname+'/frontend.html'));
+    // res.json(products);
   } catch (error) {
     next(error);
   }
 });
+
+// app.get('/products',function(req,res){
+//   res.sendFile(path.join(__dirname+'/frontend.html'));
+// });
 
 router.get('/:id',
   validatorHandler(getProductSchema, 'params'),
@@ -43,7 +48,6 @@ router.post('/',
 );
 
 router.patch('/:id',
-  validatorHandler(getProductSchema, 'params'),
   validatorHandler(updateProductSchema, 'body'),
   async (req, res, next) => {
     try {

@@ -2,7 +2,7 @@ const Joi = require('joi');
 
 const id = Joi.number().integer();
 const email = Joi.string().email();
-const password = Joi.string().min(8);
+const password = Joi.string().min(8).max(15);
 const role = Joi.string().min(5)
 const recoverytoken = Joi.string().min(10)
 
@@ -13,8 +13,9 @@ const createUserSchema = Joi.object({
 });
 
 const updateUserSchema = Joi.object({
-  email: email,
-  role: role
+  id:id.required(),
+  email: email.required(),
+  role: role.required()
 });
 
 const updateResetPassword = Joi.object({

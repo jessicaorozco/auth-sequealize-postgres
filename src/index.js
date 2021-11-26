@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const routerApi = require('./routes');
+require('./utils/auth');
 
 const { logErrors, errorHandler, boomErrorHandler, ormErrorHandler } = require('./middlewares/error.handler');
 
@@ -20,15 +21,15 @@ const options = {
   }
 }
 app.use(cors(options));
-require('./utils/auth');
-require('./config/config');
+app.use('development', () => {
+  //...
+})
+app.use('production', () => {
+  //...
+})
 
-// app.get('/', (req, res) => {
-//   res.status(200).json("APP AUTH POSGRES SEQUELIZE NODEJS");
-// });
-
-app.get('/',function(req,res){
-  res.sendFile(path.join(__dirname+'/frontend.html'));
+app.get('/', (req, res) => {
+  res.status(200).json("APP AUTH POSGRES SEQUELIZE NODEJS");
 });
 
 routerApi(app);
@@ -37,9 +38,11 @@ app.use(logErrors);
 app.use(ormErrorHandler);
 app.use(boomErrorHandler);
 app.use(errorHandler);
-
+app.use(express.static(__dirname + '/'));
 
 app.listen(port, () => {
   console.log(`Server in Port ${port}`);
 });
+
+// console.log(process.env)
 

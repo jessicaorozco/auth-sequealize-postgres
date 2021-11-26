@@ -52,7 +52,7 @@ class UserService {
 
   async changePassword (token, newPassword) {
       try {
-        const payload = jwt.sign(token, config.TOKEN_SECRET);
+        const payload = jwt.sign(token, config.apikey);
         const user = await this.findOne(payload.sub);
         if(user.recoveryToken !== token) {
           throw boom.unauthorized()

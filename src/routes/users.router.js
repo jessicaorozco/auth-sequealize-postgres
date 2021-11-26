@@ -11,8 +11,8 @@ const router = express.Router();
 
 router.get('/', async (req, res, next) => {
   try {
-    const categories = await service.find();
-    res.json(categories);
+    const user = await service.find();
+    res.json(user);
   } catch (error) {
     next(error);
   }
@@ -33,13 +33,12 @@ router.get('/:id',
 );
 
 router.post('/',
-validatorHandler(getUserSchema, 'params'),
 validatorHandler(createUserSchema, 'body'),
   async (req, res, next) => {
     try {
       const body = req.body;
-      const newCategory = await service.create(body);
-      res.status(201).json(newCategory);
+      const newUser = await service.create(body);
+      res.status(201).json(newUser);
     } catch (error) {
       next(error);
     }
@@ -47,7 +46,6 @@ validatorHandler(createUserSchema, 'body'),
 );
 
 router.patch('/:id',
-  validatorHandler(getUserSchema, 'params'),
   validatorHandler(updateUserSchema, 'body'),
   async (req, res, next) => {
     try {
