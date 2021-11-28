@@ -11,9 +11,7 @@ const service = new ProductsService();
 router.get('/', async (req, res, next) => {
   try {
     const products = await service.find();
-    res.render('frontend.html', {
-      root: './views'
-    });
+    res.render('frontend.html');
   } catch (error) {
     next(error);
   }

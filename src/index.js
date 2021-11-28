@@ -42,9 +42,7 @@ app.listen(port, () => {
 });
 
 app.get('/', (req, res) => {
-  res.render('index.html', {
-    root: './public'
-  });
+  res.render('index.html');
 });
 
 // console.log(process.env)
