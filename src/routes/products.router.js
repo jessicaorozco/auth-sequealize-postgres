@@ -1,5 +1,4 @@
 const express = require('express');
-const path = require('path');
 const passport = require('passport');
 const ProductsService = require('./../sequelize/product.service');
 const validatorHandler = require('./../middlewares/validator.handler');
@@ -11,15 +10,21 @@ const service = new ProductsService();
 router.get('/', async (req, res, next) => {
   try {
     const products = await service.find();
-    res.render('frontend.html');
+    let productsChunks = [];
+    let chunkSize = 3;
+    for (let i = 0; i < products.length; i += chunkSize) {
+      productsChunks.push(products.slice(i, i + chunkSize));
+    }
+    res.render('frontend.html',
+    { products: productsChunks,
+      message: 'products'
+    });
+
   } catch (error) {
     next(error);
   }
 });
 
-// app.get('/products',function(req,res){
-//   res.sendFile(path.join(__dirname+'/frontend.html'));
-// });
 
 router.get('/:id',
   validatorHandler(getProductSchema, 'params'),
@@ -35,7 +40,7 @@ router.get('/:id',
 );
 
 router.post('/',
-passport.authenticate('jwt', {session: false}),
+
   validatorHandler(createProductSchema, 'body'),
   async (req, res, next) => {
     try {

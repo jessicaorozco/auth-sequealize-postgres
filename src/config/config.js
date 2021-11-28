@@ -12,10 +12,11 @@ const config =  {
   dbport: process.env.DATABASE_PORT,
   dburl: process.env.DATABASE_URL,
   apikey: process.env.TOKEN_SECRET || 'apikey',
+  jwtsecret: process.env.JWT_SECRET,
   mailmail: process.env.GMAIL_ADDRESS,
-  passwordmail: process.env.PASSWORD_EMAIL
+  passwordmail: process.env.PASSWORD_EMAIL,
+  uri:process.env.URI || 'URI'
 
 }
-// console.log(`${config.mailmail} ${config.passwordmail}`);
 
 module.export = config;

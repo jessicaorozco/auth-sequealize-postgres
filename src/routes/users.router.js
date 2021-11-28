@@ -60,7 +60,7 @@ router.patch('/:id',
 );
 
 router.delete('/:id',
-passport.authenticate('jwt', {session: false}),
+// passport.authenticate('jwt', {session: false}),
   validatorHandler(getUserSchema, 'params'),
   async (req, res, next) => {
     try {
@@ -74,7 +74,7 @@ passport.authenticate('jwt', {session: false}),
 );
 
 router.post('/change-password',
-passport.authenticate('jwt', {session: false}),
+// passport.authenticate('jwt', {session: false}),
 validatorHandler(updateResetPassword, 'body'),
   async (req, res, next) => {
     try {

@@ -42,7 +42,7 @@ class AuthService {
       }
       const payload = { sub: user.id }
       const token = jwt.sign(payload, 'apikey', {expiresIn: '15 min'});
-      const link = `http://myfrontend.com/recovery?token=${token}`
+      const link = `https://auth-node-sequelize-express.herokuapp.com/recovery?token=${token}`
       await service.update(user.id, {recoveryToken: token})
       const mail = {
         from: '"Correo de Prueba correo 👻" <jessicaorozco@gmail.com>', // sender address

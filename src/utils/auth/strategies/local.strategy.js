@@ -1,7 +1,7 @@
 const { Strategy } = require('passport-local');
 
-const AuthService = require('../../../sequelize/auth.service');
-const service = new AuthService();
+const UserService = require('../../../sequelize/user.service');
+const service = new UserService();
 
 const LocalStrategy = new Strategy({
     usernameField: 'email',
