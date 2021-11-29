@@ -2,7 +2,7 @@
 
 require('dotenv').config();
 
-const config =  {
+module.export =  {
   env: process.env.NODE_ENV,
   port: process.env.PORT || 3000,
   dbuser: process.env.USER,
@@ -19,4 +19,3 @@ const config =  {
 
 }
 
-module.export = config;
