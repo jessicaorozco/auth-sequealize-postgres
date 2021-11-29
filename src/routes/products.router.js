@@ -15,11 +15,6 @@ router.get('/', async (req, res, next) => {
     for (let i = 0; i < products.length; i += chunkSize) {
       productsChunks.push(products.slice(i, i + chunkSize));
     }
-    // res.render('frontend.html',
-    // { products: productsChunks,
-    //   message: 'products'
-    // });
-
     res.json({productsChunks})
 
   } catch (error) {
