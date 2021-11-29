@@ -9,7 +9,13 @@ const URI = process.env.DATABASE_URL;
 const sequelize = new Sequelize(URI, {
   dialect: 'postgres',
   protocol: 'postgres',
-  logging: true
+  logging: true,
+  dialectOptions: {
+    ssl: {
+      require:false,
+    rejectUnauthorized:false
+    }
+  }
 });
 setupModels(sequelize);
 console.log(`Sequelize succesfull`);
