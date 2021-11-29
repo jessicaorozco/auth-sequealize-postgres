@@ -21,7 +21,7 @@ app.set('view engine', 'html');
 
 routerApi(app);
 
-const whitelist = ['http://localhost:8080', 'https://myapp.co'];
+const whitelist = ['http://localhost:8080', 'https://auth-node-sequelize-express.herokuapp.com'];
 const options = {
   origin: (origin, callback) => {
     if (whitelist.includes(origin) || !origin) {
