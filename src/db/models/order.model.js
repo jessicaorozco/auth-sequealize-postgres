@@ -33,10 +33,10 @@ const OrderSchema = {
     onUpdate: 'CASCADE',
     onDelete: 'SET NULL'
   },
-  createdAt: {
+  createat: {
     allowNull: false,
     type: DataTypes.DATE,
-    field: 'createdat',
+    field: 'createat',
     defaultValue: Sequelize.NOW,
   },
   amount: {

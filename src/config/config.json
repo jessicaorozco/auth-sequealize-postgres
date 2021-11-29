@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": null,
+    "database": "dbstore",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "dusuuzzxisomqt",
+    "password": null,
+    "database": "dd9dr4eseqigg6i",
+    "host": "ec2-52-71-217-158.compute-1.amazonaws.com",
+    "dialect": "postgres"
+  }
+}

@@ -26,9 +26,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}/api/v1/users",
+							"raw": "{{API_URL}}/api/v1/users",
 							"host": [
-								"{{BASE_URL}}"
+								"{{API_URL}}"
 							],
 							"path": [
 								"api",
@@ -41,19 +41,31 @@
 				},
 				{
 					"name": "oneusers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{BASE_URL}}/api/v1/users/2",
+							"raw": "{{API_URL}}/api/v1/users/3",
 							"host": [
-								"{{BASE_URL}}"
+								"{{API_URL}}"
 							],
 							"path": [
 								"api",
 								"v1",
 								"users",
-								"2"
+								"3"
 							],
 							"query": [
 								{
@@ -76,7 +88,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"email\" : \"gus@test.com\",\r\n  \"password\" : \"Ma1234578\",\r\n   \"role\": \"admin\"\r\n}\r\n",
+							"raw": "{\r\n     \"email\" : \"gus@test.com\",\r\n  \"password\" : \"Ma1234578\",\r\n   \"role\": \"admin\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -84,14 +96,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}/api/v1/users",
+							"raw": "{{API_URL}}/api/v1/users/",
 							"host": [
-								"{{BASE_URL}}"
+								"{{API_URL}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"users"
+								"users",
+								""
 							]
 						}
 					},
@@ -103,12 +116,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/profile/",
-							"protocol": "http",
+							"raw": "{{API_URL}}/api/v1/profile/",
 							"host": [
-								"localhost"
+								"{{API_URL}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"v1",
@@ -137,12 +148,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/auth/login",
-							"protocol": "http",
+							"raw": "{{API_URL}}/api/v1/auth/login",
 							"host": [
-								"localhost"
+								"{{API_URL}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"v1",
@@ -157,13 +166,20 @@
 					"name": "recovery",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTYzODAzMTA4MX0.iBsT52AJsI8bB_WTPAg2WML1CQUqRD44SJ6ZlKUuptc",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\r\n  \"email\" : \"zen@test.com\"\r\n\r\n\r\n}\r\n",
+							"raw": "{\r\n  \"email\" : \"jnocastrillon@gmail.com\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -171,17 +187,129 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/auth/recovery",
-							"protocol": "http",
+							"raw": "{{API_URL}}/api/v1/auth/recovery",
 							"host": [
-								"localhost"
+								"{{API_URL}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"v1",
 								"auth",
 								"recovery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteuser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjI2LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MzgxMTE4OTl9.N6hYEToVOy7R3EbF1UX1VqgjinuQhMCfw_FdgxpxokM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjI2LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MzgxMDUyNjR9.Pz44LGI1uEdMotqd-Pne6qmqrTa9-nI4Vbf6rFyYchc",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/api/v1/users/3",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateuser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjI2LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MzgxMTE4OTl9.N6hYEToVOy7R3EbF1UX1VqgjinuQhMCfw_FdgxpxokM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2,\r\n    \"email\": \"jessjjjjjjjjjj@test.com\",\r\n    \"role\": \"admin\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/api/v1/users/2",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verifyToken",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\" : \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjI2LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MzgxMTE4OTl9.N6hYEToVOy7R3EbF1UX1VqgjinuQhMCfw_FdgxpxokM\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/api/v1/auth/verify",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"verify"
 							]
 						}
 					},
@@ -210,9 +338,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}/api/v1/products/",
+							"raw": "{{API_URL}}/api/v1/products/",
 							"host": [
-								"{{BASE_URL}}"
+								"{{API_URL}}"
 							],
 							"path": [
 								"api",
@@ -236,11 +364,21 @@
 				{
 					"name": "product",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjI2LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MzgxMTE4OTl9.N6hYEToVOy7R3EbF1UX1VqgjinuQhMCfw_FdgxpxokM",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": " { \r\n  \"title\" : \"Camera Canon\",\r\n  \"image\" : \"http://google.com/ddf.jpg\",\r\n  \"description\" : \"Canoasasasasa\",\r\n  \"price\" : 3000,\r\n  \"categoryId\": 1\r\n\r\n}\r\n",
+							"raw": " { \r\n  \"title\" : \"Router\",\r\n  \"image\" : \"https://drive.google.com/file/d/1CuCWkUftIczSx67z6_XrLboAq3nK4pzR/view?usp=sharing\",\r\n  \"description\" : \"routerpppp\",\r\n  \"price\" : 40,\r\n  \"categoryId\": 1\r\n\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -248,15 +386,84 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}/api/v1/products/",
+							"raw": "{{API_URL}}/api/v1/products/",
 							"host": [
-								"{{BASE_URL}}"
+								"{{API_URL}}"
 							],
 							"path": [
 								"api",
 								"v1",
 								"products",
 								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "oneproduct",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/api/v1/products/1",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update product",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n      \r\n        \"price\": 120\r\n      \r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/api/v1/products/3",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/api/v1/products/2",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"2"
 							]
 						}
 					},
@@ -274,7 +481,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{  \"name\": \"Jess\",\r\n  \"lastName\": \"Orozco\",\r\n  \"phone\" : \"354555225\",\r\n  \"user\" : {\r\n      \"email\": \"Jess@test.com\",\r\n      \"password\": \"12345678\"\r\n  }\r\n}",
+							"raw": "{  \"name\": \"Jess\",\r\n  \"lastName\": \"Orozco\",\r\n  \"phone\" : \"354555225\",\r\n  \"user\" : {\r\n      \"email\": \"jes@test.com\",\r\n      \"password\": \"12345678\"\r\n  }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -282,16 +489,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/customer",
-							"protocol": "http",
+							"raw": "{{API_URL}}/api/v1/customers",
 							"host": [
-								"localhost"
+								"{{API_URL}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"v1",
-								"customer"
+								"customers"
 							]
 						}
 					},
@@ -310,16 +515,148 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/customer",
-							"protocol": "http",
+							"raw": "{{API_URL}}/api/v1/customers",
 							"host": [
-								"localhost"
+								"{{API_URL}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"v1",
-								"customer"
+								"customers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "orders",
+			"item": [
+				{
+					"name": "orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}api/v1/profile/my-orders",
+							"host": [
+								"{{API_URL}}api"
+							],
+							"path": [
+								"v1",
+								"profile",
+								"my-orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addorder",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/api/v1/profile/my-orders",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"profile",
+								"my-orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addorder",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n\"customerId\": 1,\r\n\"productId\":1,\r\n\"amount\": 20.00\r\n\r\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/api/v1/orders",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "category",
+			"item": [
+				{
+					"name": "newCategory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTYzNzc2OTkzMX0.hvLHHu0wNBb1dMvHVfzEnLDKcD2Ry-5GKi6TBysehA8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Tecnologia\",\r\n    \"image\": \"http://google/hghgh.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/api/v1/categories",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "allcategory",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/api/v1/categories",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categories"
 							]
 						}
 					},
@@ -341,89 +678,6 @@
 					"port": "3000",
 					"path": [
 						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "newCategory",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTYzNzc2OTkzMX0.hvLHHu0wNBb1dMvHVfzEnLDKcD2Ry-5GKi6TBysehA8",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Tecnologia\",\r\n    \"image\": \"http://google/hghgh.jpg\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/v1/categories",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"v1",
-						"categories"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "orders",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/v1/profile/my-orders",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"v1",
-						"profile",
-						"my-orders"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "addorder",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/v1/orders",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"v1",
-						"orders"
 					]
 				}
 			},
