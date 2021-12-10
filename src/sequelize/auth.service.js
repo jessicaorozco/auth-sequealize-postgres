@@ -28,7 +28,8 @@ class AuthService {
       sub: user.id,
       role: use.role
     }
-    const token = jwt.sign(payload, 'apikey')
+    console.log(payload)
+    const token = jwt.sign(payload, process.env.TOKEN_SECRET)
     return {
       user,
       token

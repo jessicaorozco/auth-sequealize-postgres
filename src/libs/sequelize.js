@@ -11,10 +11,8 @@ const sequelize = new Sequelize(URI, {
   protocol: 'postgres',
   logging: true,
   dialectOptions: {
-    ssl: {
-      require:false,
-    rejectUnauthorized:false
-    }
+      rejectUnauthorized:false
+
   }
 });
 setupModels(sequelize);

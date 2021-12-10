@@ -73,21 +73,13 @@ class UserService {
       sub: user.id,
       role: user.role
     }
-    const token = await jwt.sign(payload, 'apikey')
+    const token = await jwt.sign(payload, 'apikey', {expiresIn: 15000})
     return {
       user,
       token
      }
   }
-  async verifyToken (token) {
-    const user = req.user
-    const payload = {sub:user.id}
-    await jwt.verify(token, 'apikey')
-    return {
-      message:`sesion activa para ${payload.sub}`,
-      token
-     }
-  }
+
   async getUser(email, password) {
     const user = await this.findByEmail(email)
     if(!user){
@@ -138,6 +130,10 @@ class UserService {
       return {message: `Email enviado ` }
     }
 
+    async verifyToken (token) {
+      let rta = jwt.verify(token, 'apikey');
+      return rta
+    }
 }
 
 module.exports = UserService;

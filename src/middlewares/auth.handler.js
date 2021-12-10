@@ -2,18 +2,6 @@ const boom = require('@hapi/boom');
 const jwt = require('jsonwebtoken');
 const { config } = require('./../config/config');
 
-async function verifyToken () {
-const secret = config.apiKey;
-const token = req.body
-
-function verifyToken(token, secret) {
-  return jwt.verify(token, secret);
-}
-
-const payload = verifyToken(token, secret);
-console.log(payload);
-
-}
 
 function checkApiKey(req, res, next) {
   const apiKey = req.headers['apikey'];

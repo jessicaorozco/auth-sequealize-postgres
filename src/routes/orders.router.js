@@ -16,13 +16,25 @@ router.get(
   async (req, res, next) => {
     try {
       const { id } = req.params;
-      const order = await service.findOne(id);
-      res.json(order);
+      const orders = await service.findOne(id);
+      res.json(orders);
     } catch (error) {
       next(error);
     }
   }
 );
+router.get(
+  '/',
+  async (req, res, next) => {
+    try {
+      const orders = await service.find();
+      res.json(orders);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
 
 router.post(
   '/',

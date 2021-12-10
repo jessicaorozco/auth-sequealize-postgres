@@ -201,3 +201,9 @@ token-verify.js
 nodemailer.js
 Screenshot_31.png
 postgres.png
+pg_hba.conf
+pg_hba.conf.save
+pg_hba.conf.txt
+postgresql.conf
+postgresql.conf.save
+postgresql.conf.save.1

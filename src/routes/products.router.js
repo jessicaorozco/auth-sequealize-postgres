@@ -10,12 +10,10 @@ const service = new ProductsService();
 router.get('/', async (req, res, next) => {
   try {
     const products = await service.find();
-    let productsChunks = [];
-    let chunkSize = 3;
-    for (let i = 0; i < products.length; i += chunkSize) {
-      productsChunks.push(products.slice(i, i + chunkSize));
-    }
-    res.json({productsChunks})
+    res.json({products})
+    // res.render('frontend.html', {
+    //   products: products
+    // })
 
   } catch (error) {
     next(error);

@@ -32,7 +32,7 @@ validationHandler(createLoginSchema, 'body'),
 );
 
 router.post('/recovery',
-// passport.authenticate('jwt', {successRedirect: '/images/'}),
+passport.authenticate('jwt', {successRedirect: '/images/'}),
 validationHandler(updateRecoverySchema, 'body'),
   async (req, res, next) => {
     try {
@@ -46,8 +46,12 @@ validationHandler(updateRecoverySchema, 'body'),
 );
 router.post('/verify',
   async (req, res, next) => {
+    const {email, token} = req.body
     try {
-      const {token} = req.body
+      const user = await service.findByEmail(email);
+      if(!user){
+        throw boom.notFound()
+      }
       let rta = await service.verifyToken(token)
       res.json(rta)
     } catch (error) {

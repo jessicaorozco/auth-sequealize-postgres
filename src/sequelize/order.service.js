@@ -33,7 +33,8 @@ class OrderService {
   }
 
   async find() {
-    return [];
+    const orders = await models.Order.findAll();
+    return orders;
   }
 
   async findOne(id) {
